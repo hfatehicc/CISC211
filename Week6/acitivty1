@@ -1,0 +1,52 @@
+```assembly
+
+section .text
+        global _start
+
+_start:
+        ;question 1
+        mov eax, [var1]
+        neg eax
+        mov dl, 10
+        imul dl
+        mov [result], eax       ;expected result -20
+
+        ;question 2
+        mov eax, [var1]
+        add eax, [var2]
+        add eax, [var3]
+        add eax, [var4]
+        mov [result], eax       ;expected result 37
+
+        ;question 3
+        mov eax, [var1]
+        neg eax
+        mov dl, [var2]
+        imul dl
+        add eax, [var3]
+        mov [result], eax       ;expected result 0
+
+        ;question 4
+        mov eax, [var2]
+        sub eax, 3
+        mov ebx, eax
+
+        mov eax, [var1]
+        mov edx, 2
+        mul edx
+
+        div ebx
+        mov [result], eax       ;expected result 2
+
+        mov eax, 1
+        int 0x80
+section .data
+        var1 DD 2
+        var2 DD 5
+        var3 DD 10
+        var4 DD 20
+
+segment .bss
+        result RESB 4
+
+```
